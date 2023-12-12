@@ -82,3 +82,9 @@ void UElectricitySubsystem::Repair()
 	bIsShutdown = false;
 	OnRepaired.Broadcast();
 }
+
+void UElectricitySubsystem::SetBattery(ASubmarineBatterySlot* BatterySlot)
+{
+	this->BatterySlot = BatterySlot;
+}
+

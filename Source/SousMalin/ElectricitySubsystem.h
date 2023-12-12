@@ -32,17 +32,21 @@ public:
 	UFUNCTION()
 	bool TryUsePower(float Value);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void ChangeBattery(float BatteryCharge);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void ShutDown();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void Dysfunction();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void Repair();
+
+	UFUNCTION(BlueprintCallable)
+	void SetBattery(ASubmarineBatterySlot* BatterySlot);
+
 
 	UPROPERTY(BlueprintAssignable)
 	FPowerEvent OnPowerChanged;
