@@ -3,10 +3,17 @@
 
 #include "ElectricitySubsystem.h"
 #include "SousMalinSettings.h"
+#include "SubmarineBatterySlot.h"
+#include "Kismet/GameplayStatics.h"
 
 
 DEFINE_LOG_CATEGORY(UElectricityLog);
 
+
+TStatId UElectricitySubsystem::GetStatId() const
+{
+	return TStatId();
+}
 
 void UElectricitySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {

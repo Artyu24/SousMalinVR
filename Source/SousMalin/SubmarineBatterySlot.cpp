@@ -2,6 +2,7 @@
 
 
 #include "SubmarineBatterySlot.h"
+#include "ElectricitySubsystem.h"
 
 // Sets default values
 ASubmarineBatterySlot::ASubmarineBatterySlot()
@@ -15,7 +16,8 @@ ASubmarineBatterySlot::ASubmarineBatterySlot()
 void ASubmarineBatterySlot::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	GetWorld()->GetSubsystem<UElectricitySubsystem>()->BatterySlot = this;
 }
 
 // Called every frame

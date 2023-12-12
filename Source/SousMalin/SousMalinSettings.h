@@ -23,4 +23,7 @@ public :
 
 	UPROPERTY(EditAnywhere, Config)
 	bool bSubmarineStartsOn;
+
+	UPROPERTY(EditAnywhere, Config)
+	float BatteryLowCeiling;
 };

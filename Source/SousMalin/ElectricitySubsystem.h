@@ -12,12 +12,17 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FPowerEvent, float, EletricityValue)
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLightEvent, bool, Callback);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FElectricityEvent);
 
+class ASubmarineBatterySlot;
+
+
 UCLASS()
 class SOUSMALIN_API UElectricitySubsystem : public UTickableWorldSubsystem
 {
 	GENERATED_BODY()
 
 public:
+	TStatId GetStatId() const override;
+
 	void Initialize(FSubsystemCollectionBase& Collection) override;
 
 	void Deinitialize() override;
@@ -60,6 +65,9 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FElectricityEvent OnPowerLow;
 
+	UPROPERTY()
+	ASubmarineBatterySlot* BatterySlot;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	float CurrentPower;
 
@@ -68,7 +76,11 @@ private:
 
 	bool bIsShutdown;
 
+	bool bIsPowerLow;
+
 	float MaxPower;
 
 	float PowerConsumption;
+
+	float BatteryLowCeiling;
 };
