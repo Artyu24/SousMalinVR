@@ -45,8 +45,10 @@ public:
 	void Repair();
 
 	UFUNCTION(BlueprintCallable)
-	void SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef);
+	void SwitchLights();
 
+	UFUNCTION(BlueprintCallable)
+	void SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef);
 
 	UPROPERTY(BlueprintAssignable)
 	FPowerEvent OnPowerChanged;
