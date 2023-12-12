@@ -4,7 +4,6 @@
 #include "ElectricitySubsystem.h"
 #include "SousMalinSettings.h"
 #include "SubmarineBatterySlot.h"
-#include "Kismet/GameplayStatics.h"
 
 
 DEFINE_LOG_CATEGORY(UElectricityLog);
@@ -81,6 +80,12 @@ void UElectricitySubsystem::Repair()
 {
 	bIsShutdown = false;
 	OnRepaired.Broadcast();
+}
+
+void UElectricitySubsystem::SwitchLights()
+{
+	bAreLightsOn = !bAreLightsOn;
+	OnLightSwitched.Broadcast(bAreLightsOn);
 }
 
 void UElectricitySubsystem::SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef)

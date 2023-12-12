@@ -45,8 +45,10 @@ public:
 	void Repair();
 
 	UFUNCTION(BlueprintCallable)
-	void SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef);
+	void SwitchLights();
 
+	UFUNCTION(BlueprintCallable)
+	void SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef);
 
 	UPROPERTY(BlueprintAssignable)
 	FPowerEvent OnPowerChanged;
@@ -75,12 +77,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	float CurrentPower;
 
-private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bAreLightsOn;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsShutdown;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsPowerLow;
+
+private:
 
 	float MaxPower;
 
