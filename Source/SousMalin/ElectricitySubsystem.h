@@ -77,12 +77,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	float CurrentPower;
 
-private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bAreLightsOn;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsShutdown;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool bIsPowerLow;
+
+private:
 
 	float MaxPower;
 
