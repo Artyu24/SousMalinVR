@@ -12,8 +12,6 @@ ASubmarineBatterySlot::ASubmarineBatterySlot()
 
 	BatterySlotMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BatterySlotMesh"));
 	RootComponent = BatterySlotMesh;
-
-	BatterySlotSpot->SetupAttachment(BatterySlotMesh);
 }
 
 // Called when the game starts or when spawned
