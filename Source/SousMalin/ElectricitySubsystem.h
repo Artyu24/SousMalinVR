@@ -45,7 +45,7 @@ public:
 	void Repair();
 
 	UFUNCTION(BlueprintCallable)
-	void SetBattery(ASubmarineBatterySlot* BatterySlot);
+	void SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef);
 
 
 	UPROPERTY(BlueprintAssignable)

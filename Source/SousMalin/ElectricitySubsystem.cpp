@@ -83,8 +83,8 @@ void UElectricitySubsystem::Repair()
 	OnRepaired.Broadcast();
 }
 
-void UElectricitySubsystem::SetBattery(ASubmarineBatterySlot* BatterySlot)
+void UElectricitySubsystem::SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef)
 {
-	this->BatterySlot = BatterySlot;
+	BatterySlot = BatterySlotRef;
 }
 
