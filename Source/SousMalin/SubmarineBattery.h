@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "SubmarineBattery.generated.h"
 
+
+class ASubmarineBatterySlot;
+
 UCLASS()
 class SOUSMALIN_API ASubmarineBattery : public AActor
 {
@@ -15,12 +18,28 @@ public:
 	// Sets default values for this actor's properties
 	ASubmarineBattery();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	TObjectPtr<ASubmarineBatterySlot> CurrentSlot;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditAnywhere)
+	USceneComponent* RootSceneComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UStaticMeshComponent* Mesh;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void ChargeBattery(float Value);
+
+	UFUNCTION(BlueprintCallable)
+	void DischargeBattery(float Value);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float BatteryPower;
+
+	float MaxBatteryPower;
 };
