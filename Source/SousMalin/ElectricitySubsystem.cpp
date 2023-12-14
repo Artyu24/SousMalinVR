@@ -3,9 +3,7 @@
 
 #include "ElectricitySubsystem.h"
 #include "SousMalinSettings.h"
-#include "SubmarineBattery.h"
 #include "SubmarineBatterySlot.h"
-#include "Kismet/KismetStringLibrary.h"
 
 
 DEFINE_LOG_CATEGORY(UElectricityLog);
@@ -26,6 +24,7 @@ void UElectricitySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	PowerConsumption = Settings->PowerConsumption;
 	MaxPower = Settings->MaxElectricityPower;
 	bAreLightsOn = Settings->bLightStartsOn;
+	bIsShutdown = Settings->bSubmarineStartsOn;
 }
 
 void UElectricitySubsystem::Deinitialize()
@@ -55,16 +54,6 @@ bool UElectricitySubsystem::TryUsePower(float Value)
 	}
 
 	CurrentPower = FMath::Clamp(CurrentPower - Value , 0.0f, MaxPower);
-	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Emerald, FString::Printf(TEXT("%f"), CurrentPower));
-	if(BatterySlot->PluggedBattery)
-	{
-		BatterySlot->PluggedBattery->DischargeBattery(Value);
-	} else
-	{
-		ShutDown();
-		return false;
-	}
-	
 	OnPowerChanged.Broadcast(CurrentPower / MaxPower);
 
 	return true;
@@ -73,40 +62,34 @@ bool UElectricitySubsystem::TryUsePower(float Value)
 void UElectricitySubsystem::ChangeBattery(float BatteryCharge)
 {
 	CurrentPower = BatteryCharge;
-	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString::Printf(TEXT("%f"), CurrentPower));
 	OnPowerChanged.Broadcast(CurrentPower / MaxPower);
 }
 
 void UElectricitySubsystem::ShutDown()
 {
-	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString(TEXT("Electricity Shutdown")));
 	bIsShutdown = true;
 	OnShutDown.Broadcast();
 }
 
 void UElectricitySubsystem::Dysfunction()
 {
-	UE_LOG(UElectricityLog, Warning, TEXT("Dysfunctionning"));
 	OnDysfunction.Broadcast();
 }
 
 void UElectricitySubsystem::Repair()
 {
 	bIsShutdown = false;
-	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString(TEXT("Electricity Repaired")));
 	OnRepaired.Broadcast();
 }
 
 void UElectricitySubsystem::SwitchLights()
 {
-	UE_LOG(UElectricityLog, Warning, TEXT("Lights switched"));
 	bAreLightsOn = !bAreLightsOn;
 	OnLightSwitched.Broadcast(bAreLightsOn);
 }
 
 void UElectricitySubsystem::SetBatterySlot(ASubmarineBatterySlot* BatterySlotRef)
 {
-	UE_LOG(UElectricityLog, Warning, TEXT("Battery slot set !"));
 	BatterySlot = BatterySlotRef;
 }
 
