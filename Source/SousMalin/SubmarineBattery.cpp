@@ -30,6 +30,7 @@ void ASubmarineBattery::BeginPlay()
 void ASubmarineBattery::ChargeBattery(float Value)
 {
 	BatteryPower = FMath::Clamp(BatteryPower + Value, 0, MaxBatteryPower);
+	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Blue, FString(TEXT("Electricity Repaired")));
 }
 
 void ASubmarineBattery::DischargeBattery(float Value)
