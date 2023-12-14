@@ -27,12 +27,14 @@ ASubmarineBatterySlot::ASubmarineBatterySlot()
 void ASubmarineBatterySlot::SlotBattery(ASubmarineBattery* Battery)
 {
 	PluggedBattery = Battery;
+	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString(TEXT("Slotted Battery")));
 	OnSlottedBattery.Broadcast(PluggedBattery);
 }
 
 void ASubmarineBatterySlot::UnSlotBattery()
 {
 	PluggedBattery = nullptr;
+	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString(TEXT("Slotted Battery")));
 	OnSlottedBattery.Broadcast(0);
 }
 
