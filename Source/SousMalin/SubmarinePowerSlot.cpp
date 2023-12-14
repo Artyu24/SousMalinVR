@@ -6,6 +6,7 @@
 #include "SubmarineBattery.h"
 
 
+
 void ASubmarinePowerSlot::SlotBattery(ASubmarineBattery* Battery)
 {
 	ASubmarineBatterySlot::SlotBattery(Battery);
@@ -18,6 +19,7 @@ void ASubmarinePowerSlot::UnSlotBattery()
 {
 	ASubmarineBatterySlot::UnSlotBattery();
 
+	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString(TEXT("Unslotted Battery")));
 	GetWorld()->GetSubsystem<UElectricitySubsystem>()->ChangeBattery(0);
 }
 
