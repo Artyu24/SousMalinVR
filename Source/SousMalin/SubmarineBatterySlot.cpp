@@ -27,11 +27,13 @@ ASubmarineBatterySlot::ASubmarineBatterySlot()
 void ASubmarineBatterySlot::SlotBattery(ASubmarineBattery* Battery)
 {
 	PluggedBattery = Battery;
+	OnSlottedBattery.Broadcast(PluggedBattery);
 }
 
 void ASubmarineBatterySlot::UnSlotBattery()
 {
 	PluggedBattery = nullptr;
+	OnSlottedBattery.Broadcast(0);
 }
 
 // Called when the game starts or when spawned

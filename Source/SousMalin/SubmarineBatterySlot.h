@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "SubmarineBatterySlot.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FBatterySlotEvent, ASubmarineBattery* , Battery);
+
 class ASubmarineBattery;
 class UBoxComponent;
 
@@ -25,6 +27,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	TObjectPtr<ASubmarineBattery> PluggedBattery;
+
+	UPROPERTY(BlueprintAssignable)
+	FBatterySlotEvent OnSlottedBattery;
 
 protected:
 	// Called when the game starts or when spawned
