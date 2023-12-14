@@ -3,14 +3,26 @@
 
 #include "SubmarineRechargeStation.h"
 
+#include "SubmarineBattery.h"
+
 void ASubmarineRechargeStation::SlotBattery(ASubmarineBattery* Battery)
 {
-	Super::SlotBattery(Battery);
+	ASubmarineBatterySlot::SlotBattery(Battery);
 
 }
 
 void ASubmarineRechargeStation::UnSlotBattery()
 {
-	Super::UnSlotBattery();
+	ASubmarineBatterySlot::UnSlotBattery();
 
+}
+
+void ASubmarineRechargeStation::SteerValue(float Value)
+{
+	if(!PluggedBattery)
+	{
+		return;
+	}
+
+	PluggedBattery->ChargeBattery(Value);
 }

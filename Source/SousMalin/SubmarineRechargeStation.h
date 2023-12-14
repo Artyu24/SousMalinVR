@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Steerable.h"
 #include "SubmarineBatterySlot.h"
 #include "SubmarineRechargeStation.generated.h"
 
@@ -10,7 +11,7 @@
  * 
  */
 UCLASS()
-class SOUSMALIN_API ASubmarineRechargeStation : public ASubmarineBatterySlot
+class SOUSMALIN_API ASubmarineRechargeStation : public ASubmarineBatterySlot, public ISteerable
 {
 	GENERATED_BODY()
 
@@ -19,4 +20,6 @@ public:
 
 	void UnSlotBattery() override;
 
+	UFUNCTION(BlueprintCallable)
+	void SteerValue(float Value) override;
 };
