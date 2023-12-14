@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BatterySlotable.h"
 #include "GameFramework/Actor.h"
 #include "SubmarineBatterySlot.generated.h"
 
