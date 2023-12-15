@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "SubmarineBattery.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FBatteryEvent, float, Value);
 
 class ASubmarineBatterySlot;
 
@@ -38,8 +39,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void DischargeBattery(float Value);
 
+	UPROPERTY(BlueprintAssignable)
+	FBatteryEvent OnPowerChanged;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float BatteryPower;
 
+	UPROPERTY(BlueprintReadOnly)
 	float MaxBatteryPower;
 };

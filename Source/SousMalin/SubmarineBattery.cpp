@@ -30,11 +30,13 @@ void ASubmarineBattery::BeginPlay()
 void ASubmarineBattery::ChargeBattery(float Value)
 {
 	BatteryPower = FMath::Clamp(BatteryPower + Value, 0, MaxBatteryPower);
+	OnPowerChanged.Broadcast(BatteryPower / MaxBatteryPower);
 	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Cyan, FString::Printf(TEXT("%f"), BatteryPower));
 }
 
 void ASubmarineBattery::DischargeBattery(float Value)
 {
 	BatteryPower = FMath::Clamp(BatteryPower - Value, 0, MaxBatteryPower);
+	OnPowerChanged.Broadcast(BatteryPower / MaxBatteryPower);
 }
 
