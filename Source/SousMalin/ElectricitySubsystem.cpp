@@ -55,7 +55,7 @@ bool UElectricitySubsystem::TryUsePower(float Value)
 	}
 
 	CurrentPower = FMath::Clamp(CurrentPower - Value , 0.0f, MaxPower);
-	GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Emerald, FString::Printf(TEXT("%f"), CurrentPower));
+	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, 5.0f, FColor::Emerald, FString::Printf(TEXT("%f"), CurrentPower));
 	if(BatterySlot->PluggedBattery)
 	{
 		BatterySlot->PluggedBattery->DischargeBattery(Value);
